@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lakshmi Ganesh Nadivinti — Portfolio</title>
+  <meta name="description" content="Portfolio of Lakshmi Ganesh Nadivinti (Gani) — MERN & Web Developer. Projects, skills, education, certifications, and contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --bg-soft: #0f1522;
+      --card: rgba(255,255,255,0.06);
+      --text: #e8ecf1;
+      --muted: #a4b1c0;
+      --primary: #7c5cff;
+      --accent: #22d3ee;
+      --ring: rgba(124, 92, 255, 0.45);
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --radius: 18px;
+      --container: 1200px;
+    }
+    [data-theme="light"] {
+      --bg: #f6f7fb;
+      --bg-soft: #ffffff;
+      --card: rgba(10,15,25,0.06);
+      --text: #0b0f17;
+      --muted: #5a6675;
+      --primary: #5a3aff;
+      --accent: #0ea5e9;
+      --ring: rgba(14,165,233,0.35);
+      --shadow: 0 10px 28px rgba(13,18,28,0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji','Segoe UI Emoji';
+      color: var(--text); background: radial-gradient(1200px 600px at 10% -10%, rgba(124,92,255,0.2), transparent 60%), radial-gradient(1000px 800px at 110% 10%, rgba(34,211,238,0.18), transparent 60%), var(--bg);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* Layout */
+    .container { width: min(calc(100% - 32px), var(--container)); margin-inline: auto; }
+    header {
+      position: sticky; top: 0; z-index: 30; backdrop-filter: saturate(140%) blur(8px);
+      background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.05));
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 8px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .5px; }
+    .brand .dot { width: 10px; height: 10px; border-radius: 8px; background: linear-gradient(45deg, var(--primary), var(--accent)); box-shadow: 0 0 0 6px var(--ring); }
+    .nav a { color: var(--muted); font-weight: 500; padding: 8px 12px; border-radius: 10px; }
+    .nav a:hover { color: var(--text); background: var(--card); }
+    .right { display: flex; align-items: center; gap: 10px; }
+    .theme-toggle { border: 0; background: var(--card); color: var(--text); padding: 10px 12px; border-radius: 12px; cursor: pointer; box-shadow: var(--shadow); }
+
+    /* Main Grid with sticky right column */
+    .main { display: grid; grid-template-columns: 1fr 340px; gap: 22px; padding: 28px 0 50px; }
+    .sticky { position: sticky; top: 82px; height: fit-content; }
+
+    /* Hero */
+    .hero { padding: 28px; border-radius: var(--radius); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03)); border: 1px solid rgba(255,255,255,0.08); box-shadow: var(--shadow); }
+    .hero h1 { font-size: clamp(26px, 4.5vw, 40px); margin: 0 0 6px; }
+    .badge { display:inline-flex; align-items:center; gap:10px; padding:8px 12px; border-radius:999px; background: var(--card); color: var(--muted); border:1px solid rgba(255,255,255,.08); margin-bottom: 10px; }
+
+    /* Section */
+    section { margin-top: 22px; }
+    .section-title { font-size: 22px; margin: 0 0 10px; }
+    .muted { color: var(--muted); }
+
+    /* Cards */
+    .card { background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03)); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); box-shadow: var(--shadow); }
+
+    /* Skills */
+    .skills { display:grid; grid-template-columns: repeat(2, minmax(220px, 1fr)); gap: 12px; }
+    .skill { padding: 14px; border-radius: 14px; }
+    .skill h4 { margin: 0 0 6px; font-size: 15px; }
+    .bar { height: 10px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+    .bar > span { display: block; height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); width: var(--w, 70%); }
+
+    /* Timeline */
+    .timeline { position: relative; padding: 8px 8px 8px 22px; }
+    .timeline::before { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.15); border-radius: 2px; }
+    .titem { position: relative; padding: 10px 12px 10px 18px; margin-bottom: 12px; border-radius: 14px; }
+    .titem::before { content: ""; position: absolute; left: 3px; top: 14px; width: 10px; height: 10px; border-radius: 8px; background: linear-gradient(180deg, var(--primary), var(--accent)); box-shadow: 0 0 0 6px var(--ring); }
+    .titem h4 { margin: 0 0 4px; font-size: 16px; }
+    .titem .meta { color: var(--muted); font-size: 13px; }
+
+    /* Projects */
+    .projects { display:grid; grid-template-columns: repeat(2, minmax(260px,1fr)); gap: 12px; }
+    .project { padding: 16px; display: grid; gap: 8px; border-radius: 14px; }
+    .project h4 { margin: 0; font-size: 18px; }
+    .project p { color: var(--muted); margin: 0; font-size: 14px; }
+    .tagset { display:flex; gap:8px; flex-wrap:wrap; }
+    .tag { font-size:12px; padding:6px 10px; border-radius:999px; background: var(--card); border:1px solid rgba(255,255,255,.08); color: var(--muted); }
+
+    /* Right column */
+    .resume-card { padding: 18px; display: grid; gap: 12px; }
+    .btn { padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); background: linear-gradient(180deg, rgba(124,92,255,0.18), rgba(124,92,255,0.1)); color: var(--text); font-weight: 600; box-shadow: var(--shadow); cursor: pointer; text-align:center; }
+    .btn.secondary { background: var(--bg-soft); }
+    .btn i { margin-right: 8px; }
+
+    .contact a { color: var(--text); display: inline-flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: var(--card); border: 1px solid rgba(255,255,255,0.08); }
+
+    footer { color: var(--muted); padding: 30px 0 50px; text-align: center; }
+
+    /* Responsive */
+    @media (max-width: 1000px) { .projects{grid-template-columns:1fr;} .skills{grid-template-columns:1fr;} .main{grid-template-columns:1fr;} }
+    @media (max-width: 900px) { .navlinks { display: none; } }
+  </style>
+</head>
+<body id="top">
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Home">
+        <span class="dot"></span>
+        <span>Gani · Portfolio</span>
+      </a>
+      <nav class="navlinks">
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#certs">Certifications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="right">
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container main">
+    <!-- Left Content -->
+    <div>
+      <section class="hero card">
+        <span class="badge"><i class="fa-solid fa-code"></i> MERN & Web Developer</span>
+        <h1>Hi, I'm <span style="color: var(--accent);">Lakshmi Ganesh Nadivinti</span></h1>
+        <p class="muted">I build responsive, user‑friendly web apps and interfaces. Passionate about modern JavaScript, React, and clean UI with solid fundamentals in C and Python.</p>
+      </section>
+
+      <section id="skills">
+        <h3 class="section-title">Skills</h3>
+        <div class="skills">
+          <div class="card skill"><h4>HTML5, CSS</h4><div class="bar"><span style="--w:92%"></span></div></div>
+          <div class="card skill"><h4>JavaScript</h4><div class="bar"><span style="--w:85%"></span></div></div>
+          <div class="card skill"><h4>React</h4><div class="bar"><span style="--w:80%"></span></div></div>
+          <div class="card skill"><h4>Python</h4><div class="bar"><span style="--w:75%"></span></div></div>
+          <div class="card skill"><h4>C</h4><div class="bar"><span style="--w:70%"></span></div></div>
+          <div class="card skill"><h4>MongoDB & MySQL</h4><div class="bar"><span style="--w:70%"></span></div></div>
+          <div class="card skill"><h4>VS Code</h4><div class="bar"><span style="--w:95%"></span></div></div>
+        </div>
+        <p class="muted" style="margin-top:8px; font-size:13px;">Based on your resume: C, Python, HTML5, CSS, JavaScript, React, VS Code, MongoDB, MySQL. </p>
+      </section>
+
+      <section id="projects">
+        <h3 class="section-title">Projects</h3>
+        <div class="projects">
+          <article class="card project">
+            <h4>Learning Skills — e‑Learning Platform</h4>
+            <p>A responsive web platform showcasing courses across Web Dev, AI/ML, Data Science and Cyber Security with modern UI and core user interactions.</p>
+            <div class="tagset">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span><span class="tag">Responsive</span>
+            </div>
+          </article>
+          <article class="card project">
+            <h4>QR Code Generator</h4>
+            <p>Web app to generate QR codes from text/URLs using a QR API with validation and subtle animations for better UX.</p>
+            <div class="tagset">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+            </div>
+          </article>
+          <article class="card project">
+            <h4>Text‑to‑Speech Converter</h4>
+            <p>Responsive app using the Web Speech API to speak typed text with real‑time voice selection and clean UI.</p>
+            <div class="tagset">
+              <span class="tag">Web Speech API</span><span class="tag">JavaScript</span><span class="tag">UI/UX</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="education">
+        <h3 class="section-title">Education</h3>
+        <div class="card timeline">
+          <div class="titem">
+            <h4>Aditya Degree College — B.Sc. Computer Science</h4>
+            <div class="meta">Lakshminarayana Nagar, Kakinada • 2023 – Present</div>
+          </div>
+          <div class="titem">
+            <h4>Gamyam Junior College — MPC</h4>
+            <div class="meta">Voolapalli Road, Mamidada • 2021 – 2023</div>
+          </div>
+          <div class="titem">
+            <h4>Sri Chaitanya EM School — SSC</h4>
+            <div class="meta">Tapeswaram, East Godavari</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="certs">
+        <h3 class="section-title">Certifications</h3>
+        <ul class="card" style="list-style:none; padding:14px 18px; line-height:1.9;">
+          <li>HTML5 Application Development — Certiport</li>
+          <li>Programming Essentials in C — Cisco Networking Academy</li>
+          <li>Python Essentials 1 & 2 — Cisco Networking Academy</li>
+          <li>Data Analytics Basics for Everyone — IBM</li>
+        </ul>
+      </section>
+
+      <section id="internship">
+        <h3 class="section-title">Internship</h3>
+        <div class="card" style="padding:14px 18px;">
+          <p class="muted"><strong>MERN Full‑Stack Development</strong> — Short‑term internship at ADHOC Network Tech Company.</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Right Sticky Column -->
+    <aside class="sticky">
+      <div class="card resume-card">
+        <h3 style="margin:0;">Resume</h3>
+        <button class="btn" id="downloadBtn"><i class="fa-solid fa-file-arrow-down"></i> Download PDF</button>
+        <a class="btn secondary" href="#" id="viewBtn"><i class="fa-solid fa-eye"></i> View in Browser</a>
+        <p class="muted" style="margin:0; font-size:12px;">Place your file at <code>/assets/Lakshmi_Ganesh_Resume.pdf</code> or update the path in the script.</p>
+      </div>
+
+      <div class="card resume-card" id="contact">
+        <h3 style="margin:0;">Contact</h3>
+        <a href="mailto:ganeshnadivinti77@gmail.com"><i class="fa-solid fa-envelope"></i> ganeshnadivinti77@gmail.com</a>
+        <a href="tel:+919908353634"><i class="fa-solid fa-phone"></i> +91 99083 53634</a>
+        <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/ganesh-nadivinti-1246392bb"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+        <a target="_blank" rel="noopener" href="https://github.com/Gani-00"><i class="fa-brands fa-github"></i> GitHub</a>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <p>© 2025 Lakshmi Ganesh Nadivinti. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Theme toggle + persist
+    const toggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if(saved) root.setAttribute('data-theme', saved);
+    toggle.addEventListener('click', ()=>{
+      const current = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', current); localStorage.setItem('theme', current);
+      toggle.innerHTML = current === 'light' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+    });
+
+    // Resume download/view
+    const RESUME_PATH = 'assets/Lakshmi_Ganesh_Resume.pdf'; // <- update to your actual file
+    document.getElementById('downloadBtn').addEventListener('click', ()=>{
+      const a = document.createElement('a'); a.href = RESUME_PATH; a.download = 'Lakshmi_Ganesh_Resume.pdf'; a.click();
+    });
+    document.getElementById('viewBtn').addEventListener('click', (e)=>{
+      e.preventDefault(); window.open(RESUME_PATH, '_blank');
+    });
+  </script>
+</body>
+</html>
